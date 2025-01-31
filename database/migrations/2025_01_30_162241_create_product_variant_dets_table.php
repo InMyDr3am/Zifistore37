@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('product_variant_dets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('product_variants_id');
+            $table->foreign('product_variants_id')->references('id')->on('product_variants');
             $table->timestamps();
         });
     }
