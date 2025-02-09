@@ -11,8 +11,14 @@ class Buyer extends Model
 {
     protected $table = 'buyers';
 
-    protected $fillable = ["name", "phone", "address"];
+    protected $fillable = ["name", "phone", "slug", "address"];
 
+    // Jika menggunakan slug sebagai route key
+    public function getRouteKeyName()
+    {
+        return 'slug'; // atau 'uuid' jika menggunakan UUID
+    }
+    
     public function limitAddress()
     {
         $address = Str::limit($this->address, 30);
