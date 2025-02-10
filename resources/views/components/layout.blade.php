@@ -295,7 +295,7 @@
       gtag('config', 'UA-56159088-1');
     </script>
 
-    <!-- Tambahkan script untuk DataTables JS -->
+    <!-- script DataTables JS index buyer -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
@@ -311,7 +311,8 @@
                     { data: 'name', name: 'name' },
                     { data: 'phone', name: 'phone' },
                     { data: 'address', name: 'address' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                    
                 ]
             });
         });
