@@ -34,11 +34,6 @@ class Buyer extends Model
         });
     }
 
-    // public function typeBuyer()
-    // {
-    //     return $this->belongsTo('App\Models\TypeBuyer','type_buyer_id');
-    // }
-
     public static function getAllData()
     {
         return self::select('id', "name", "phone", "slug", "address")
@@ -48,18 +43,16 @@ class Buyer extends Model
 
     public static function getDataForDatatables()
     {
-        $buyers = self::getAllData(); // Menyediakan query builder untuk DataTables
+        $buyers = self::getAllData();
 
         return DataTables::of($buyers)
             ->addColumn('no', function($buyer) {
-                // Anda bisa menambahkan kolom nomor otomatis atau logika lainnya di sini
-                return ''; // Kolom nomor akan diisi oleh DataTables
+                return '';
             })
             ->addColumn('action', function($row) {
                 $editUrl = route('buyers.edit', $row->slug);
                 $deleteUrl = route('buyers.destroy', $row->id);
 
-                // Tombol Edit dan Delete
                 $btnEdit = '<a href="'.$editUrl.'" class="btn btn-info btn-sm">Edit</a>';
                 $btnDelete = '
                     <form action="'.$deleteUrl.'" method="POST" style="display:inline">
@@ -84,67 +77,4 @@ class Buyer extends Model
         return $this->update($data);
     }
 
-    public function saveData(Request $request)
-    {
-        $buyer = Buyer::create([
-            'type_buyer_id' => $request->get('type_buyer_id'),
-            'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'prov_id' => $request->get('prov_id'),
-            'city_id' => $request->get('city_id'),
-            'village_id' => $request->get('village_id'),
-            'address' => $request->get('address'),
-        ]);
-
-        return $buyer;
-    }
-
-    public function updateData(Request $request, $id)
-    {
-        $buyer = Buyer::findOrFail($id);
-        $buyer->update([
-            'type_buyer_id' => $request->get('type_buyer_id'),
-            'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'prov_id' => $request->get('prov_id'),
-            'city_id' => $request->get('city_id'),
-            'village_id' => $request->get('village_id'),
-            'address' => $request->get('address'),
-        ]);
-        return $buyer;
-    }
-
-    public function resultStore(Request $request, $validator)
-    {
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-        else  
-        {
-            $buyer = $this->saveData($request);
-            $message = "Berhasil menyimpan data buyer";
-            return $this->responOneData($buyer, $message);
-        }
-    }
-
-    public function resultUpdate(Request $request, $validator, $id)
-    {
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-        else  
-        {
-            $buyer = $this->updateData($request, $id);
-            $message = "Berhasil mengubah data buyer";
-            return $this->responOneData($buyer, $message);
-        }
-    }
-
-    public function totalBuyer()
-    {
-        return Buyer::select('prov_id')
-        ->raw('count(*) as total')
-        ->groupBy('prov_id')
-        ->get();
-    }
 }
