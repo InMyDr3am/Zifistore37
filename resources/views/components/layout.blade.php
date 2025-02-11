@@ -305,10 +305,10 @@
             $('#buyers-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('buyers.getData') }}',  // URL untuk mengambil data buyers
+                ajax: '{{ route('buyers.getData') }}',  
                 columns: [
                   { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
-                    return meta.row + 1; // Menampilkan nomor urut
+                    return meta.row + 1; 
                 }},
                     { data: 'name', name: 'name' },
                     { data: 'phone', name: 'phone' },
@@ -326,10 +326,29 @@
             $('#productCategories-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('product-categories.getData') }}',  // URL untuk mengambil data buyers
+                ajax: '{{ route('product-categories.getData') }}',  
                 columns: [
                   { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
-                    return meta.row + 1; // Menampilkan nomor urut
+                    return meta.row + 1; 
+                }},
+                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                    
+                ]
+            });
+        });
+    </script>
+
+    <!-- menampilkan data product category memakai datatables -->
+    <script>
+        $(document).ready(function() {
+            $('#marketplaces-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('marketplaces.getData') }}',  
+                columns: [
+                  { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                    return meta.row + 1; 
                 }},
                     { data: 'name', name: 'name' },
                     { data: 'action', name: 'action', orderable: false, searchable: false },

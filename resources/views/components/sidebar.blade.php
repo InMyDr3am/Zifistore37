@@ -57,6 +57,9 @@
             <li class="nav-item">
               <a class="nav-link pl-3" href="product-categories"><span class="ml-1 item-text">Categories Product</span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link pl-3" href="marketplaces"><span class="ml-1 item-text">Marketplace</span></a>
+            </li>
           </ul>
         </li>
         <li class="nav-item w-100">
