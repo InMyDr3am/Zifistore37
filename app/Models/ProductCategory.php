@@ -13,7 +13,7 @@ class ProductCategory extends Model
 
     public static function getAllData()
     {
-        return self::select("name")
+        return self::select("id","name")
                 ->orderBy('name', 'ASC')
                 ->get();
     }
