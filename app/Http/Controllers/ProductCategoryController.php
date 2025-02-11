@@ -30,5 +30,26 @@ class ProductCategoryController extends Controller
         return redirect()->route('product-categories.index')
             ->with('success', 'Category Product added successfully!');
     }
+    public function edit($id)
+    {
+        $productCategory = ProductCategory::findOrFail($id);
+        return view('product-categories.edit', compact('productCategory'));
+    }
+
+    public function update(ProductCategoryRequest $request, $id)
+    {
+        $productCategory = ProductCategory::findOrFail($id);
+        $productCategory->update($request->validated());
+        return redirect()->route('product-categories.edit', $productCategory->id)
+            ->with('success', 'Product Category Updated Succesfully !');
+    }
+
+    public function destroy($id)
+    {
+        $productCategory = ProductCategory::findOrFail($id);
+        $productCategory->delete();
+        return redirect()->route('product-categories.index')
+            ->with('success', 'Product Category Deleted Succesfully!');
+    }
 
 }
