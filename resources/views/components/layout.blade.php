@@ -295,9 +295,11 @@
       gtag('config', 'UA-56159088-1');
     </script>
 
-    <!-- script DataTables JS index buyer -->
+    <!-- script DataTables JS Yajra Laraver -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- menampilkan data buyer memakai datatables -->
     <script>
         $(document).ready(function() {
             $('#buyers-table').DataTable({
@@ -311,6 +313,25 @@
                     { data: 'name', name: 'name' },
                     { data: 'phone', name: 'phone' },
                     { data: 'address', name: 'address' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                    
+                ]
+            });
+        });
+    </script>
+
+    <!-- menampilkan data product category memakai datatables -->
+    <script>
+        $(document).ready(function() {
+            $('#productCategories-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('product-categories.getData') }}',  // URL untuk mengambil data buyers
+                columns: [
+                  { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                    return meta.row + 1; // Menampilkan nomor urut
+                }},
+                    { data: 'name', name: 'name' },
                     { data: 'action', name: 'action', orderable: false, searchable: false },
                     
                 ]

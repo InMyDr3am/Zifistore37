@@ -31,7 +31,8 @@ class BuyerController extends Controller
     {
         Buyer::create($request->validated());
 
-        return redirect()->route('buyers.index')->with('success', 'Buyer added successfully!');
+        return redirect()->route('buyers.index')
+            ->with('success', 'Buyer added successfully!');
     }
 
     public function edit($slug)
