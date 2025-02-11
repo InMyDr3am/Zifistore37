@@ -30,4 +30,26 @@ class MarketplaceController extends Controller
         return redirect()->route('marketplaces.index')
             ->with('success', 'Marketplace added successfully!');
     }
+
+    public function edit($id)
+    {
+        $marketplace = Marketplace::findOrFail($id);
+        return view('marketplaces.edit', compact('marketplace'));
+    }
+
+    public function update(MarketplacesRequest $request, $id)
+    {
+        $marketplace = Marketplace::findOrFail($id);
+        $marketplace->update($request->validated());
+        return redirect()->route('marketplaces.edit', $marketplace->id)
+            ->with('success', 'Marketplace Updated Succesfully !');
+    }
+
+    public function destroy($id)
+    {
+        $marketplace = Marketplace::findOrFail($id);
+        $marketplace->delete();
+        return redirect()->route('marketplaces.index')
+            ->with('success', 'Marketplace Deleted Succesfully!');
+    }
 }

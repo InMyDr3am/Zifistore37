@@ -30,6 +30,7 @@ class ProductCategoryController extends Controller
         return redirect()->route('product-categories.index')
             ->with('success', 'Category Product added successfully!');
     }
+    
     public function edit($id)
     {
         $productCategory = ProductCategory::findOrFail($id);
