@@ -80,40 +80,9 @@ class Buyer extends Model
         if (isset($data['name'])) {
             $data['slug'] = Str::slug($data['name'] . '-' . uniqid());
         }
-
+        
         return $this->update($data);
     }
-    
-    // public function getAllDataByTypeBuyer($id)
-    // {
-    //     return Buyer::where('type_buyer_id', $id)
-    //         ->select('id',"type_buyer_id", "name", "phone", "address", "prov_id")
-    //         ->orderBy('name', 'ASC')->get();
-    // }
-
-    // public function responGetAllData($buyer, $message)
-    // {
-    //     return response()->json([
-    //         'data' => BuyerResource::collection($buyer),
-    //         'message' => $message,
-    //         'success' => true
-    //     ]);
-    // }
-
-    // public function responOneData($buyer, $message)
-    // {
-    //     return response()->json([
-    //         'data' => new BuyerResource($buyer),
-    //         'message' => $message,
-    //         'success' => true
-    //     ]);
-    // }
-
-    // public function storeValidation(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), ( new BuyerStoreRequest())->rules());
-    //     return $validator;
-    // }
 
     public function saveData(Request $request)
     {

@@ -7,6 +7,7 @@
                 <div class="row mt-1 align-items-center">
                     <div class="col-12 text-left pl-4">
                         <div class="card-body">
+                            <a href="{{ route('buyers.create') }}" class="btn btn-success">Add Buyer</a><hr>
                             @if(session('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
