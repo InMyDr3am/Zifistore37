@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Yajra\DataTables\DataTables;
 
 class Buyer extends Model
 {
@@ -13,10 +14,9 @@ class Buyer extends Model
 
     protected $fillable = ["name", "phone", "slug", "address"];
 
-    // Jika menggunakan slug sebagai route key
     public function getRouteKeyName()
     {
-        return 'slug'; // atau 'uuid' jika menggunakan UUID
+        return 'slug';
     }
     
     public function limitAddress()
@@ -25,18 +25,65 @@ class Buyer extends Model
         return $address;
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($buyer) {
+            $buyer->slug = Str::slug($buyer->name) . '-' . uniqid();
+        });
+    }
+
     // public function typeBuyer()
     // {
     //     return $this->belongsTo('App\Models\TypeBuyer','type_buyer_id');
     // }
 
-    public function getAllData()
+    public static function getAllData()
     {
-        return Buyer::select('id', "name", "phone", "address")
-            ->orderBy('name', 'ASC')
-            ->get();
+        return self::select('id', "name", "phone", "slug", "address")
+                ->orderBy('name', 'ASC')
+                ->get();
     }
 
+    public static function getDataForDatatables()
+    {
+        $buyers = self::getAllData(); // Menyediakan query builder untuk DataTables
+
+        return DataTables::of($buyers)
+            ->addColumn('no', function($buyer) {
+                // Anda bisa menambahkan kolom nomor otomatis atau logika lainnya di sini
+                return ''; // Kolom nomor akan diisi oleh DataTables
+            })
+            ->addColumn('action', function($row) {
+                $editUrl = route('buyers.edit', $row->slug);
+                $deleteUrl = route('buyers.destroy', $row->id);
+
+                // Tombol Edit dan Delete
+                $btnEdit = '<a href="'.$editUrl.'" class="btn btn-info btn-sm">Edit</a>';
+                $btnDelete = '
+                    <form action="'.$deleteUrl.'" method="POST" style="display:inline">
+                        '.csrf_field().'
+                        '.method_field("DELETE").'
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Delete</button>
+                    </form>
+                ';
+
+                return $btnEdit . ' ' . $btnDelete;
+            })
+            ->rawColumns(['action']) // Mengizinkan HTML di kolom action
+            ->make(true);
+    }
+
+    public function updateBuyer($data)
+    {
+        if (isset($data['name'])) {
+            $data['slug'] = Str::slug($data['name'] . '-' . uniqid());
+        }
+
+        return $this->update($data);
+    }
+    
     // public function getAllDataByTypeBuyer($id)
     // {
     //     return Buyer::where('type_buyer_id', $id)
