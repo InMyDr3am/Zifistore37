@@ -358,5 +358,24 @@
         });
     </script>
 
+    <!-- menampilkan data product brand memakai datatables -->
+    <script>
+        $(document).ready(function() {
+            $('#productBrands-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('product-brands.getData') }}',  
+                columns: [
+                  { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                    return meta.row + 1; 
+                }},
+                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                    
+                ]
+            });
+        });
+    </script>
+
   </body>
 </html>

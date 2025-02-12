@@ -58,7 +58,10 @@
               <a class="nav-link pl-3" href="product-categories"><span class="ml-1 item-text">Categories Product</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link pl-3" href="marketplaces"><span class="ml-1 item-text">Marketplace</span></a>
+              <a class="nav-link pl-3" href="marketplaces"><span class="ml-1 item-text">Marketplaces</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-3" href="product-brands"><span class="ml-1 item-text">Brands</span></a>
             </li>
           </ul>
         </li>
