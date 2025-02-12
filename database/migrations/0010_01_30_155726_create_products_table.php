@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('product_category_id');
-            $table->unsignedBigInteger('product_variant_id');
+            $table->unsignedBigInteger('product_brand_id');
             $table->integer('stock');
             $table->integer('min_stock');
             $table->decimal('cost_price', 10, 2);
             $table->decimal('offline_price', 10, 2);
             $table->decimal('marketplace_price', 10, 2);
             $table->foreign('product_category_id')->references('id')->on('product_categories');
-            $table->foreign('product_variant_id')->references('id')->on('product_variants');
+            $table->foreign('product_brand_id')->references('id')->on('product_brands');
             
             $table->timestamps();
         });
