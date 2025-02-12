@@ -30,4 +30,26 @@ class ProductBrandController extends Controller
         return redirect()->route('product-brands.index')
             ->with('success', 'Brand Product added successfully!');
     }
+
+    public function edit($id)
+    {
+        $productBrand = ProductBrand::findOrFail($id);
+        return view('product-brands.edit', compact('productBrand'));
+    }
+
+    public function update(ProductBrandRequest $request, $id)
+    {
+        $productBrand = ProductBrand::findOrFail($id);
+        $productBrand->update($request->validated());
+        return redirect()->route('product-brands.edit', $productBrand->id)
+            ->with('success', 'Product Brand Updated Succesfully !');
+    }
+
+    public function destroy($id)
+    {
+        $productBrand = ProductBrand::findOrFail($id);
+        $productBrand->delete();
+        return redirect()->route('product-brands.index')
+            ->with('success', 'Product Brand Deleted Succesfully!');
+    }
 }
