@@ -1,5 +1,5 @@
 <x-layout>
-    <h3 class="page-title">Create Data Category</h3>
+    <h3 class="page-title">Create Data Brand</h3>
     <div class="mb-2 align-items-center">
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -15,7 +15,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('product-categories.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('product-brands.store') }}" method="POST" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @csrf
                                     <div class="row">

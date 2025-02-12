@@ -25,7 +25,7 @@ class ProductBrandController extends Controller
 
     public function store(ProductBrandRequest $request)
     {
-        ProductBrandRequest::create($request->validated());
+        ProductBrand::create($request->validated());
 
         return redirect()->route('product-brands.index')
             ->with('success', 'Brand Product added successfully!');
