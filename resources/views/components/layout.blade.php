@@ -299,6 +299,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+    <script>
+      $(document).ready(function() {
+        $('#producttt-table').DataTable({
+          // ordering: true,
+          processing: true,
+          serverSide: true,
+          ajax: '{{ route('products.getData') }}',
+          columns: [
+            { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                return meta.row + 1; 
+            }},
+            { data: 'name', name: 'name' },
+            { data: 'category.name', name: 'category.name' },
+            { data: 'brand.name', name: 'brand.name' },
+            { data: 'stock', name: 'stock' },
+            { data: 'offline_price', name: 'offline_price' },
+            { data: 'marketplace_price', name: 'marketplace_price' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
+          ]
+        });
+      });
+    </script>
+
     <!-- menampilkan data buyer memakai datatables -->
     <script>
         $(document).ready(function() {
@@ -377,26 +400,8 @@
       });
   </script>
 
-    <!-- menampilkan data product memakai datatables -->
-    <script>
-      $(document).ready(function() {
-          $('#products-table').DataTable({
-              processing: true,
-              serverSide: true,
-              ajax: '{{ route('products.getData') }}',
-            columns: [
-                { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
-                    return meta.row + 1; 
-                }},
-                { data: 'name', name: 'name' },
-                { data: 'stock', name: 'stock' },
-                { data: 'offline_price', name: 'offline_price' },
-                { data: 'marketplace_price', name: 'marketplace_price' },
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ]
-          });
-      });
-  </script>
+
+
 
     
 

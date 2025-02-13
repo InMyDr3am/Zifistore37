@@ -18,16 +18,17 @@
                                     {{ session('success') }}
                                 </div>
                             @endif  
-                            <table id="products-table" class="display" style="width:100%">
+                            <table id="producttt-table" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Product</th>
-                                        {{-- <th>Category</th>
-                                        <th>Brand</th> --}}
+                                        <th>Category</th>
+                                        <th>Brand</th>
                                         <th>Stock</th>
                                         <th>Offline Price</th>
                                         <th>Marketplace Price</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

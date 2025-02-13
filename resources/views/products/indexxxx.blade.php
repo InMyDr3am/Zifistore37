@@ -17,7 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Produk</th>
+                                        <th>Nama Pruk</th>
                                         <th>Kategori</th>
                                         <th>Merek</th>
                                         <th>Stok</th>
