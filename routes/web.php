@@ -5,6 +5,7 @@ use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\ProductBrandController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('home');
@@ -25,3 +26,7 @@ Route::resource('product-categories', ProductCategoryController::class)->except(
 Route::get('product-brands/data', [ProductBrandController::class, 'getData'])->name('product-brands.getData');
 Route::get('product-brands/{productBrands}/edit', [ProductBrandController::class, 'edit'])->name('product-brands.edit');
 Route::resource('product-brands', ProductBrandController::class)->except(['edit']);
+
+Route::get('products/data', [ProductController::class, 'getData'])->name('products.getData');
+Route::get('products/{products}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::resource('products', ProductController::class)->except(['edit']);

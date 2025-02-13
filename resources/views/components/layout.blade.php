@@ -339,43 +339,68 @@
         });
     </script>
 
-    <!-- menampilkan data product category memakai datatables -->
+    <!-- menampilkan data marketplace memakai datatables -->
     <script>
-        $(document).ready(function() {
-            $('#marketplaces-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('marketplaces.getData') }}',  
-                columns: [
-                  { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
-                    return meta.row + 1; 
-                }},
-                    { data: 'name', name: 'name' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false },
-                    
-                ]
-            });
-        });
+      $(document).ready(function() {
+          $('#marketplaces-table').DataTable({
+              processing: true,
+              serverSide: true,
+              ajax: '{{ route('marketplaces.getData') }}',  
+              columns: [
+                { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                  return meta.row + 1; 
+              }},
+                  { data: 'name', name: 'name' },
+                  { data: 'action', name: 'action', orderable: false, searchable: false },
+                  
+              ]
+          });
+      });
     </script>
 
     <!-- menampilkan data product brand memakai datatables -->
     <script>
-        $(document).ready(function() {
-            $('#productBrands-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('product-brands.getData') }}',  
-                columns: [
-                  { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+      $(document).ready(function() {
+          $('#productBrands-table').DataTable({
+              processing: true,
+              serverSide: true,
+              ajax: '{{ route('product-brands.getData') }}',  
+              columns: [
+                { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
+                  return meta.row + 1; 
+              }},
+                  { data: 'name', name: 'name' },
+                  { data: 'action', name: 'action', orderable: false, searchable: false },
+                  
+              ]
+          });
+      });
+  </script>
+
+    <!-- menampilkan data product memakai datatables -->
+    <script>
+      $(document).ready(function() {
+          $('#products-table').DataTable({
+              processing: true,
+              serverSide: true,
+              ajax: '{{ route('products.getData') }}',
+            columns: [
+                { data: null, orderable: false, searchable: false, render: function(data, type, row, meta) {
                     return meta.row + 1; 
                 }},
-                    { data: 'name', name: 'name' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false },
-                    
-                ]
-            });
-        });
-    </script>
+                { data: 'name', name: 'name' },
+                { data: 'stock', name: 'stock' },
+                { data: 'offline_price', name: 'offline_price' },
+                { data: 'marketplace_price', name: 'marketplace_price' },
+                { data: 'action', name: 'action', orderable: false, searchable: false }
+            ]
+          });
+      });
+  </script>
+
+    
+
+    
 
   </body>
 </html>

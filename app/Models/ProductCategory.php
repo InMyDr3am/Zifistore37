@@ -11,6 +11,11 @@ class ProductCategory extends Model
 
     protected $fillable = ["name"];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'product_category_id');
+    }
+
     public static function getAllData()
     {
         return self::select("id","name")

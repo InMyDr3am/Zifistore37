@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MarketplacesRequest;
 use App\Models\Marketplace;
-use Illuminate\Http\Request;
 
 class MarketplaceController extends Controller
 {

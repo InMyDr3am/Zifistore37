@@ -63,6 +63,9 @@
             <li class="nav-item">
               <a class="nav-link pl-3" href="product-brands"><span class="ml-1 item-text">Brands</span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link pl-3" href="products"><span class="ml-1 item-text">Products</span></a>
+            </li>
           </ul>
         </li>
         <li class="nav-item w-100">
